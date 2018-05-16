@@ -71,7 +71,7 @@ def laplacian_gapfill(input_grid):
         # ... add neighbors below (num_cols pixels after).
         neighbor_matrix += coo_matrix((np.ones((np.sum(has_neighbor_below),)), (pixels_total_range[has_neighbor_below.ravel()].ravel(), pixels_total_range[has_neighbor_below.ravel()].ravel()+num_cols)), shape=(num_pixels_total, num_pixels_total))
         
-        # Select only the nodata pixels - needs two slice operations for some reason
+        # Merge center point and neighbor weights
         system_matrix = center_matrix + neighbor_matrix
         
         # Compute contributions from pixels that have data...
